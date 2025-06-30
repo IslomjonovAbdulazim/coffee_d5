@@ -9,6 +9,9 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
+  int c1 = 0;
+  int sum = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +51,13 @@ class _CartPageState extends State<CartPage> {
                                   children: [
                                     CupertinoButton(
                                       padding: EdgeInsets.zero,
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        if (c1 > 0) {
+                                          c1--;
+                                          sum -= 12;
+                                          setState(() {});
+                                        }
+                                      },
                                       child: Icon(
                                         CupertinoIcons.minus,
                                         size: 16,
@@ -62,11 +71,15 @@ class _CartPageState extends State<CartPage> {
                                       decoration: BoxDecoration(
                                         border: Border.all(),
                                       ),
-                                      child: Text("0"),
+                                      child: Text("$c1"),
                                     ),
                                     CupertinoButton(
                                       padding: EdgeInsets.zero,
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        c1++;
+                                        sum += 12;
+                                        setState(() {});
+                                      },
                                       child: Icon(
                                         CupertinoIcons.plus,
                                         size: 16,
@@ -82,6 +95,14 @@ class _CartPageState extends State<CartPage> {
                     ),
                   ],
                 ),
+              ),
+              Spacer(),
+              Row(
+                children: [
+                  Text("Total"),
+                  Spacer(),
+                  Text("$sum"),
+                ],
               ),
             ],
           ),
